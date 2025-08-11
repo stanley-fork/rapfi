@@ -1049,7 +1049,7 @@ void Evaluator::evaluatePolicy(const Board &board, PolicyBuffer &policyBuffer, A
 
     // Apply all incremental update and calculate policy
     clearCache(self);
-    if (level == ACC_LEVEL_BEST)
+    if (accumulator[self]->isSharedLargeHeadValid())
         accumulator[self]->evaluatePolicyLarge(*weight[self], policyBuffer);
     else
         accumulator[self]->evaluatePolicySmall(*weight[self], policyBuffer);

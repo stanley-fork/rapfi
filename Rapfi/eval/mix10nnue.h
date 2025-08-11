@@ -145,6 +145,11 @@ public:
     void updateSharedSmallHead(const Weight &w);
     void updateSharedLargeHead(const Weight &w);
 
+    bool isSharedLargeHeadValid() const
+    {
+        return valueSumTable[currentVersion].large_value_feature_valid;
+    }
+
     /// Calculate value (win/loss/draw) and (relative) uncertainty of current network state.
     std::tuple<float, float, float, float> evaluateValueSmall(const Weight &w);
     /// Calculate value (win/loss/draw) and (relative) uncertainty of current network state.

@@ -109,7 +109,7 @@ Value evaluate(const Board &board, Value alpha, Value beta)
         // Use evaluator eval if classical eval are in alpha-beta window margin
         int margin = classicalEvalMargin(eval);
         if (eval >= alpha - margin && eval <= beta + margin)
-            eval = computeEvaluatorValue(board, std::abs(eval) > 200 ? ACC_LEVEL_MID : ACC_LEVEL_BEST).value();
+            eval = computeEvaluatorValue(board, std::abs(eval) > 600 ? ACC_LEVEL_MID : ACC_LEVEL_BEST).value();
     }
 
     return eval;

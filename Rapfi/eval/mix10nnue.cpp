@@ -1036,7 +1036,7 @@ ValueType Evaluator::evaluateValue(const Board &board, AccLevel level)
 
     // Apply all incremental update for both sides and calculate value
     clearCache(self);
-    auto [win, loss, draw, _] = level >= ACC_LEVEL_HIGH
+    auto [win, loss, draw, _] = level == ACC_LEVEL_BEST
                                     ? accumulator[self]->evaluateValueLarge(*weight[self])
                                     : accumulator[self]->evaluateValueSmall(*weight[self]);
 
@@ -1049,10 +1049,7 @@ void Evaluator::evaluatePolicy(const Board &board, PolicyBuffer &policyBuffer, A
 
     // Apply all incremental update and calculate policy
     clearCache(self);
-    if (accumulator[self]->isSharedLargeHeadValid())
-        accumulator[self]->evaluatePolicyLarge(*weight[self], policyBuffer);
-    else
-        accumulator[self]->evaluatePolicySmall(*weight[self], policyBuffer);
+    accumulator[self]->evaluatePolicySmall(*weight[self], policyBuffer);
 }
 
 void Evaluator::clearCache(Color side)
